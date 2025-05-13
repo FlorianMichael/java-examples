@@ -11,7 +11,7 @@ public final class A09 {
     private static double balance = 0.0;
 
     public static void main(final String[] args) {
-        final Scanner scanner = new Scanner(System.in); // Don't close it as it will run forever anyway:tm:
+        final Scanner scanner = new Scanner(System.in);
         while (true) {
             final int action = rangedInteger(scanner, 0, 2, "Möchten sie Geld einzahlen (0), auszahlen (1) oder einsehen (2)?");
             if (action == 0) {                
@@ -24,7 +24,7 @@ public final class A09 {
                     "Wie viel möchtest du abheben?",
                     Double::parseDouble,
                     value -> balance - value >= MAX_LIMIT,
-                    "Bitte gebe eine gültige Dezimalzahl ein, die das Kontolimit (" + MAX_LIMIT + ") nicht überschreitet."
+                    "Bitte gebe eine gültige Dezimalzahl ein, die das Kontolimit (" + MAX_LIMIT + " Euro) nicht überschreitet."
                 );
                 balance -= remove;
                 System.out.println("Dein Kontostand beträgt jetzt " + balance + " Euro."); 

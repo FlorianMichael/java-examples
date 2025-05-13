@@ -12,6 +12,10 @@ public final class ScannerUtils {
         return getInput(scanner, prompt, input -> input, input -> !input.isEmpty(), "Eingabe darf nicht leer sein.");
     }
 
+    public static char letter(final Scanner scanner, final int index, final String prompt) {
+        return getInput(scanner, prompt, string -> string.charAt(index), Character::isLetter, "Bitte nur Buchstaben verwenden.");
+    }
+
     public static int integer(final Scanner scanner, final String prompt) {
         return getValidatedInput(scanner, prompt, Integer::parseInt, "Ungültige Zahl. Bitte erneut eingeben.");
     }
@@ -48,7 +52,7 @@ public final class ScannerUtils {
             String input = scanner.nextLine();
             try {
                 return parser.parse(input);
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
                 System.out.println(errorMessage);
             }
         }
