@@ -8,8 +8,31 @@ public final class ScannerUtils {
     private ScannerUtils() {
     }
 
+    public static void optionalContinue(final Scanner scanner) {
+        final boolean repeat = bool(scanner, "Möchtest du das Programm erneut benutzen?");
+        if (!repeat) {
+            scanner.close();
+            System.exit(0);
+        }
+    }
+
+    public static boolean bool(final Scanner scanner, final String prompt) {
+        return getInput(scanner, prompt, input -> {
+            if (input.equalsIgnoreCase("ja")) {
+                return true;
+            } else if (input.equalsIgnoreCase("nein")) {
+                return false;
+            }
+            throw new IllegalArgumentException("Ungültige Eingabe. Bitte mit \"Ja\" oder \"Nein\" antworten.");
+        }, input -> input, "Bitte mit Ja oder Nein antworten.");
+    }
+
     public static String string(final Scanner scanner, final String prompt) {
         return getInput(scanner, prompt, input -> input, input -> !input.isEmpty(), "Eingabe darf nicht leer sein.");
+    }
+
+    public static char character(final Scanner scanner, final int index, final String prompt) {
+        return getValidatedInput(scanner, prompt, string -> string.charAt(index), "Ungültige Eingabe. Bitte erneut eingeben.");
     }
 
     public static char letter(final Scanner scanner, final int index, final String prompt) {

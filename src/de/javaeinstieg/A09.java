@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import static de.javaeinstieg.ScannerUtils.*;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "InfiniteLoopStatement"})
 public final class A09 {
 
     private static final double MAX_LIMIT = -40.0;
+
     private static double balance = 0.0;
 
     public static void main(final String[] args) {

@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 import static de.javaeinstieg.ScannerUtils.*;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "InfiniteLoopStatement"})
 public final class A06 {
 
     public static void main(final String[] args) {
-        try (final Scanner scanner = new Scanner(System.in)) {
+        final Scanner scanner = new Scanner(System.in);
+        while (true) {
             final double weight = nonNegativeDecimal(scanner, "Bitte geben Sie Ihr Gewicht in kg ein:");
             final double height = decimal(scanner, "Bitte geben Sie Ihre Größe in cm ein:");
             final String gender = string(scanner, "Bitte geben Sie Ihr Biologisches Geschlecht ein (m/w/d):");
@@ -17,6 +18,7 @@ public final class A06 {
             final double bmi = calculateBMI(weight, height);
             System.out.println("Ihr BMI ist: " + Math.round(bmi * 100.0) / 100.0);
             System.out.println("Ihr BMI ist: " + getType(bmi, gender.toLowerCase(Locale.ROOT).equals("m")));
+            optionalContinue(scanner);
         }
     }
 
